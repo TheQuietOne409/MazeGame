@@ -1,8 +1,25 @@
-<!-- index.html -->
-<div id="game-container">
-  <div id="maze"></div>
-  <div id="stats">
-    <p>Score: <span id="score">0</span></p>
-    <p>Health: <span id="health">100</span></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maze Escape Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Maze Escape Game</h1>
+  <div id="game-container">
+    <div id="stats">
+      <p>Score: <span id="score">0</span></p>
+      <p>Health: <span id="health">100</span></p>
+      <p>Time: <span id="timer">60</span>s</p>
+    </div>
+    <div id="maze"></div>
   </div>
-</div>
+
+  <h3>High Scores</h3>
+  <ol id="high-scores"></ol>
+
+  <script src="script.js"></script>
+</body>
+</html>
