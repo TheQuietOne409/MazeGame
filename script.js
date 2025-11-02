@@ -4,8 +4,6 @@ const healthDisplay = document.getElementById('health');
 const timerDisplay = document.getElementById('timer');
 const highScoresList = document.getElementById('high-scores');
 
-//game variables:
-const gridSize = 10;
 let player = { x: 0, y: 0 };
 let score = 0;
 let health = 100;
@@ -21,7 +19,6 @@ function createMaze() {
       cell.dataset.x = x;
       cell.dataset.y = y;
 
-      // Random walls (not at start or exit)
       if (Math.random() < 0.2 && !(x === 0 && y === 0) && !(x === 9 && y === 9)) {
         cell.classList.add('wall');
       }
@@ -35,16 +32,15 @@ function createMaze() {
   startTimer();
 }
 
-function playerPosition() {
+function placePlayer() {
   document.querySelectorAll('.cell').forEach(cell => cell.classList.remove('player'));
   const cell = document.querySelector(`[data-x="${player.x}"][data-y="${player.y}"]`);
   cell.classList.add('player');
 }
 
-
 function markExit() {
-  const exitCell = document.querySelector(`[data-x="${gridSize - 1}"][data-y="${gridSize - 1}"]`);
-  exitCell.classList.add('exit');
+  const exit = document.querySelector(`[data-x="9"][data-y="9"]`);
+  exit.classList.add('exit');
 }
 
 function startTimer() {
@@ -66,7 +62,6 @@ function startTimer() {
 function updateStats() {
   scoreDisplay.textContent = score;
   healthDisplay.textContent = health;
-  timerDisplay.textContent = timeLeft;
 
   if (health <= 0) {
     alert('Game Over!');
@@ -75,7 +70,7 @@ function updateStats() {
   }
 }
 
-function Moves(dx, dy) {
+function movePlayer(dx, dy) {
   const newX = player.x + dx;
   const newY = player.y + dy;
 
@@ -91,7 +86,7 @@ function Moves(dx, dy) {
   player.x = newX;
   player.y = newY;
   score += 1;
-  playerPosition();
+  placePlayer();
   updateStats();
 
   if (target.classList.contains('exit')) {
@@ -115,12 +110,12 @@ function saveHighScore(score) {
   const scores = JSON.parse(localStorage.getItem('mazeScores')) || [];
   scores.push(score);
   scores.sort((a, b) => b - a);
-  localStorage.setItem('mazeScores', JSON.stringify(scores.slice(0, 5)));
+  localStorage.setItem('mazeScores', JSON.stringify(scores.slice(0, 5))); //JSON.stringify = object->string
   showHighScores();
 }
 
 function showHighScores() {
-  const scores = JSON.parse(localStorage.getItem('mazeScores')) || [];
+  const scores = JSON.parse(localStorage.getItem('mazeScores')) || []; //JSON.parse = string-> object
   highScoresList.innerHTML = '';
   scores.forEach((s, i) => {
     const li = document.createElement('li');
@@ -130,13 +125,13 @@ function showHighScores() {
 }
 
 function resetGame() {
+  player = { x: 0, y: 0 };
   score = 0;
   health = 100;
-  playerPos = { x: 0, y: 0 };
   createMaze();
   updateStats();
 }
 
-displayHighScores();
+showHighScores();
 createMaze();
 updateStats();
