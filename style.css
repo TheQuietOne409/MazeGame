@@ -1,20 +1,19 @@
 body {
-  font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif; //fun font
+  font-family: 'Comic Sans MS', cursive, sans-serif; //fun font
   background-color: #fff8dc;
   color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   text-align: center;
-  padding: 20px;
 }
-
 h1 {
-  font-size: 2.5em;
   color: #ff6347;
   margin-bottom: 10px;
-}
-
-h3 {
-  color: #008080;
-  margin-top: 30px;
 }
 
 p, li {
@@ -23,25 +22,9 @@ p, li {
 } //for instructions
 
 ul {
-  list-style-type: "👉 ";
+  list-style-type: "-> ";
   padding-left: 0;
 } //for instructions
-
-a {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background-color: #ff6347;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-a:hover {
-  background-color: #e5533d;
-}
 
 #stats {
   margin-bottom: 15px;
