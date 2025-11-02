@@ -1,27 +1,41 @@
-/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+}
+
 #game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+#stats {
+  margin-bottom: 10px;
+}
+
 #maze {
   display: grid;
   grid-template-columns: repeat(10, 40px);
   grid-template-rows: repeat(10, 40px);
   gap: 2px;
 }
+
 .cell {
   width: 40px;
   height: 40px;
   background-color: #eee;
   border: 1px solid #ccc;
 }
+
 .wall {
   background-color: #333;
 }
+
 .player {
   background-color: blue;
 }
+
 .exit {
   background-color: green;
 }
