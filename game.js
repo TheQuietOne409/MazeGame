@@ -19,7 +19,12 @@ function createMaze() {
       cell.dataset.x = x;
       cell.dataset.y = y;
 
-      if (Math.random() < 0.2 && !(x === 0 && y === 0) && !(x === 9 && y === 9)) {
+      //stop walls from forming around player--hopefully at least
+      const safeZone = x <= 2 && y <= 2;
+      const isStart = x === 0 && y === 0;
+      const isExit = x === 9 && y === 9;
+
+      if (!safeZone && !isStart && !isExit && Math.random() < 0.2) {
         cell.classList.add('wall');
       }
 
@@ -65,7 +70,7 @@ function updateStats() {
 
   if (health <= 0) {
     alert('Game Over!');
-    saveHighScore(score);
+    updateHighScore(score);
     resetGame();
   }
 }
@@ -94,7 +99,7 @@ function movePlayer(dx, dy) {
     const bonus = timeLeft * 2;
     score += 50 + bonus;
     alert(`You escaped! Bonus: ${bonus} points`);
-    saveHighScore(score);
+    updateHighScore(score);
     resetGame();
   }
 }
@@ -106,16 +111,16 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') movePlayer(1, 0);
 });
 
-function saveHighScore(score) {
-  const scores = JSON.parse(localStorage.getItem('mazeScores')) || [];
+function updateHighScore(score) {
+  const scores = JSON.parse(localStorage.getItem('mazeScores')) || []; //JSON.parse = string-> object
   scores.push(score);
   scores.sort((a, b) => b - a);
   localStorage.setItem('mazeScores', JSON.stringify(scores.slice(0, 5))); //JSON.stringify = object->string
-  showHighScores();
+  HighScores();
 }
 
-function showHighScores() {
-  const scores = JSON.parse(localStorage.getItem('mazeScores')) || []; //JSON.parse = string-> object
+function HighScores() {
+  const scores = JSON.parse(localStorage.getItem('mazeScores')) || []; 
   highScoresList.innerHTML = '';
   scores.forEach((s, i) => {
     const li = document.createElement('li');
@@ -132,6 +137,6 @@ function resetGame() {
   updateStats();
 }
 
-showHighScores();
+HighScores();
 createMaze();
 updateStats();
