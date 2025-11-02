@@ -1,3 +1,7 @@
+/*   Joyce Mason
+     922346409
+     Source: */
+
 const maze = document.getElementById('maze');
 const scoreDisplay = document.getElementById('score');
 const healthDisplay = document.getElementById('health');
