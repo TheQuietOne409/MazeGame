@@ -1,6 +1,6 @@
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif; //fun font
-  background-color: #6495ED;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /*fun font*/
+  background-color: #6495ED; /*--bluish--not working?? */
   color: #333;
   margin: 0;
   padding: 0;
@@ -19,12 +19,12 @@ h1 {
 p, li {
   font-size: 1.2em;
   line-height: 1.6;
-} //for instructions
+} /*for instructions*/
 
 ul {
   list-style-type: "-> ";
   padding-left: 0;
-} //for instructions
+} /*for instructions*/
 
 #stats {
   margin-bottom: 15px;
